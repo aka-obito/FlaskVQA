@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Question Answering</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Visual Question Answering</h1>
+        <form id="vqa-form" method="POST" enctype="multipart/form-data">
+            <label for="image">Upload an Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <div id="image-preview" class="image-preview">
+                <p>No image uploaded</p>
+            </div>
+            <label for="question">Enter your Question:</label>
+            <input type="text" id="question" name="question" placeholder="Ask a question about the image" required>
+            <button type="submit">Submit</button>
+        </form>
+        {% if prediction %}
+            <div class="result">
+                <h2>Predicted Answer: {{ prediction }}</h2>
+                <img src="{{ image_url }}" alt="Uploaded Image">
+            </div>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

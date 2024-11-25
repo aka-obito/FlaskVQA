@@ -34,7 +34,7 @@ class VQAModel1(nn.Module):
 # Load the trained model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = VQAModel1(num_answers=582)
-checkpoint = torch.load("./model/best_model.pth", map_location=device)
+checkpoint = torch.load("./best_model.pth", map_location=device)
 model.load_state_dict(checkpoint["model_state_dict"])
 model.to(device)
 model.eval()
@@ -48,7 +48,7 @@ image_transforms = transforms.Compose([
 ])
 
 # Load answer space
-with open("./model/answer_space.txt") as f:
+with open("./answer_space.txt") as f:
     answer_space = f.read().splitlines()
 
 @app.route('/', methods=['GET', 'POST'])
